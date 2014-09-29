@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name        = "capistrano-runit-sidekiq"
-  spec.version     = '0.1.0'
+  spec.version     = '0.1.1'
   spec.author      = ['Oleksandr Simonov', 'Anton Ageev']
   spec.email       = ['alex@simonov.me', 'antage@gmail.com']
   spec.summary     = %q{Capistrano3 tasks for manage sidekiq via runit supervisor.}
