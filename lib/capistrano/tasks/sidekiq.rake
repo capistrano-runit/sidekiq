@@ -136,7 +136,7 @@ namespace :runit do
           end
         else
           info 'Sidekiq is not running'
-          if test("[ -f #{pid_file}) ]")
+          if test("[ -f #{pid_file} ]")
             info 'Removing broken pid file'
             execute :rm, '-f', pid_file
           end
