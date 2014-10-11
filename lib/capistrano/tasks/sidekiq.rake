@@ -76,7 +76,7 @@ namespace :runit do
     end
 
     def collect_log_sidekiq_param(array)
-      array << "-L #{File.join(current_path, 'log', "sidekiq.#{sidekiq_environment}.log")}"
+      array << "-L #{File.join(shared_path, 'log', "sidekiq.#{sidekiq_environment}.log")}"
     end
 
     def collect_pid_sidekiq_param(array)
