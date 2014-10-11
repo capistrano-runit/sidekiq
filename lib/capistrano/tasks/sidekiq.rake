@@ -10,8 +10,8 @@ namespace :load do
     set :runit_sidekiq_default_hooks, -> { true }
     set :runit_sidekiq_role, -> { :app }
     # Rbenv and RVM integration
-    set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(sidekiq sidekiqctl))
-    set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(sidekiq sidekiqctl))
+    set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(sidekiq))
+    set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(sidekiq))
   end
 end
 
@@ -131,9 +131,7 @@ namespace :runit do
       pid_file = pid_full_path(fetch(:runit_sidekiq_pid))
       on roles fetch(:runit_sidekiq_role) do
         if test "[ -f #{pid_file} ]" && test("kill -0 $( cat #{pid_file})")
-          within current_path do
-            execute :bundle, :exec, :sidekiqctl, 'quiet', "#{pid_file}"
-          end
+          runit_execute_command('puma', '1')
         else
           info 'Sidekiq is not running'
           if test("[ -f #{pid_file} ]")
