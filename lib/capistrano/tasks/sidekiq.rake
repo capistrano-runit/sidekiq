@@ -2,7 +2,6 @@ include ::Capistrano::Runit
 
 namespace :load do
   task :defaults do
-    set :runit_sidekiq_run_template, nil
     set :runit_sidekiq_concurrency, nil
     set :runit_sidekiq_pid, -> { 'tmp/pids/sidekiq.pid' }
     set :runit_sidekiq_queues, nil
