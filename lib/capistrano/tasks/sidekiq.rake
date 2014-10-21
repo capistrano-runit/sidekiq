@@ -3,7 +3,7 @@ include ::Capistrano::Runit
 namespace :load do
   task :defaults do
     set :runit_sidekiq_concurrency, nil
-    set :runit_sidekiq_pid, -> { 'tmp/pids/sidekiq.pid' }
+    set :runit_sidekiq_pid, -> { File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid') }
     set :runit_sidekiq_queues, nil
     set :runiq_sidekiq_config_path, nil
     set :runit_sidekiq_default_hooks, -> { true }
