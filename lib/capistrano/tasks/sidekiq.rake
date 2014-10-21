@@ -130,7 +130,7 @@ namespace :runit do
       pid_file = pid_full_path(fetch(:runit_sidekiq_pid))
       on roles fetch(:runit_sidekiq_role) do
         if test "[ -f #{pid_file} ]" && test("kill -0 $( cat #{pid_file})")
-          runit_execute_command('puma', '1')
+          runit_execute_command('sidekiq', '1')
         else
           info 'Sidekiq is not running'
           if test("[ -f #{pid_file} ]")
