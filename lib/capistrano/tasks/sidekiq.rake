@@ -26,7 +26,7 @@ namespace :runit do
     # Helpers
 
     def sidekiq_enabled_service_dir
-      enabled_service_dir_for('sidekid')
+      enabled_service_dir_for('sidekiq')
     end
 
     def sidekiq_service_dir
