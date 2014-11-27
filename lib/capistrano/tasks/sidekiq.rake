@@ -5,6 +5,7 @@ namespace :load do
     set :runit_sidekiq_concurrency, nil
     set :runit_sidekiq_pid, -> { File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid') }
     set :runit_sidekiq_queues, nil
+    set :runit_sidekiq_require, nil
     set :runiq_sidekiq_config_path, nil
     set :runit_sidekiq_default_hooks, -> { true }
     set :runit_sidekiq_role, -> { :app }
@@ -40,6 +41,7 @@ namespace :runit do
       collect_log_sidekiq_param(array)
       collect_pid_sidekiq_param(array)
       collect_config_sidekiq_param(array)
+      collect_require_sidekiq_params(array)
       array.compact.join(' ')
     end
 
@@ -58,6 +60,12 @@ namespace :runit do
       concurrency = fetch(:runit_sidekiq_concurrency)
       return unless concurrency
       array << "-c #{concurrency}"
+    end
+
+    def collect_require_sidekiq_params(array)
+      require_file_or_folder = fetch(:runit_sidekiq_require)
+      return unless require_file_or_folder
+      array << "-r #{require_file_or_folder}"
     end
 
     def collect_queues_sidekiq_params(array)

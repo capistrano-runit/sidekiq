@@ -41,6 +41,7 @@ require "capistrano/runit/sidekiq"
 * `runit_sidekiq_concurrency` -- number of threads of sidekiq process. Default value: `nil`.
 * `runit_sidekiq_queues` -- array of queue names. Default value: `nil`.
 * `runit_sidekiq_config_path` -- relative path to config file. Default value: `nil`.
+* `runit_sidekiq_require` -- Location of Rails application with workers or file to require. Default value: `nil`.
 
 ## Contributing
 
